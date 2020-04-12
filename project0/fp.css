@@ -2,9 +2,14 @@
 body {
   background-color: white;
   color: black;
-  font-family: Georgia, 'Times New Roman', Times, serif;
   font-style: italic;
 }
 
+.wp, .glow, .res {
+  font-size: larger;
+}
 
+.glow {
+  font-weight: bold;
+}
 /*# sourceMappingURL=fp.css.map */

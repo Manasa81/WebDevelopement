@@ -5,16 +5,18 @@ $fontstyle:italic;
 body {
   background-color: $bgcolor;
   color: $textcolor;
-  font-size: $fontsize;
   font-style: $fontstyle;
 }
+%font{
+    font-size: larger;
+}
 .wp{
-    font-size: 10px;
+    @extend %font;
 }
 .glow{
-    @extend .wp;
-    font-weight: bolder;
+    @extend %font;
+    font-weight: bold;
 }
 .res{
-    @extend .wp;
+    @extend %font;
 }

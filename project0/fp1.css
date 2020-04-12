@@ -27,17 +27,17 @@
     font-weight: bolder;
   }
   .wp{
-    font-size: larger;
+    /* font-size: larger; */
     font-style: italic;
   }
   .res{
-    font-size: larger;
+    /* font-size: larger; */
     font-style: italic;
   }
   .glow {
     color: black;
     text-align: center;
-    font-weight: bold;
+    /* font-weight: bold; */
     -webkit-animation: glow 1s ease-in-out infinite alternate;
     -moz-animation: glow 1s ease-in-out infinite alternate;
     animation: glow 1s ease-in-out infinite alternate;
