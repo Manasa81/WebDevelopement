@@ -94,7 +94,7 @@ h1{
     border: 2px solid #5f5255;
     box-shadow: 0 4px 0 #282425, 0 0 6px #282425, 1px 1px 0px #282425, -1px -1px 0px #282425, 0px 8px 10px rgba(0, 0, 0, .5);
 }
-.push3:active {
+.push2:active {
     box-shadow: 0 2px 0 #282425, 0 0 6px #282425, 1px 1px 0px #282425, -1px -1px 0px #282425, 0px 4px 10px rgba(0, 0, 0, .5);
     top: 2px;
 }
