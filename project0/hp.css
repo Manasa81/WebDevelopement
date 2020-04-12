@@ -1,7 +1,7 @@
 body{
     /* height: 100%;
    margin: 0; */
-    background-image: url("Backgroundimg.jpeg") ;
+    background-image: url("onlineBI.PNG") ;
     /* background-size:50%; */
     /* background-repeat: no-repeat; */
     /* background-position: center; */
@@ -9,6 +9,21 @@ body{
     background-size: cover;
     /* height: 100vh;
     width: 100%; */
+}
+.header {
+    text-align: center;
+    /* background:cornflowerblue; */
+    color: black;
+    font-size: larger;
+    font-weight: bolder;
+  }
+img{
+    position: absolute;
+    left:550px;
+    top:90px;
+    border: 4px white transparent;
+    padding: 1px;
+    border-radius: 20px;
 }
 h1{
 
@@ -18,6 +33,7 @@ h1{
 
 #example{
     float: right;
+    float: center;
     height: 100px;
     text-align: center;
     width: 250px;

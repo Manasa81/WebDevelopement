@@ -1,0 +1,54 @@
+.header {
+    padding: 1px;
+    text-align: right;
+    background: lightslategrey;
+    color: white;
+    font-size: larger;
+    border-radius: 20px;
+  }
+  p.cb{
+      text-align: left;
+      font-size: x-large;
+      font-style: italic;
+      font-weight: bolder;
+  }
+  
+  table,th,tr{
+        border: 2px solid green;
+        font-size: x-large;
+        font-style: italic;
+        column-gap: 40px;
+  }
+  details{
+      font-size: x-large;
+  }
+  h5{
+    font-size: x-large;
+    font-weight: bolder;
+  }
+  .wp{
+    font-size: larger;
+    font-style: italic;
+  }
+  .res{
+    font-size: 30px;
+    font-style: italic;
+  }
+  .glow {
+    font-size: larger;
+    color: black;
+    text-align: center;
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+  }
+  
+  @-webkit-keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+    }
+    
+    to {
+      text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+    }
+  }

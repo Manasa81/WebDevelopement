@@ -1,19 +1,24 @@
 body{
-  background-color: lightcyan;
+  background-color: linen;
+  /* background-image: url("Backgroundimg.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover; */
 }
 .header {
   padding: 5px;
   text-align: center;
-  background: #c72c81;
-  color: white;
+  background:#c72c81;
+  color: black;
   font-size: 20px;
   border-radius: 20px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 details{
   font-size: larger;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   padding: 5px;
   text-align: center;
-  background:lightseagreen;
+  background:seagreen;
   color: white;
   font-size: 20px;
   border-radius: 20px;

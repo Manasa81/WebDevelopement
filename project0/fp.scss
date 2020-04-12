@@ -1,0 +1,10 @@
+$bgcolor: white;
+$textcolor: black;
+$fontstyle:italic;
+/* Use the variables */
+body {
+  background-color: $bgcolor;
+  color: $textcolor;
+  font-size: $fontsize;
+  font-style: $fontstyle;
+}
