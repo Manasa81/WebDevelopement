@@ -8,3 +8,13 @@ body {
   font-size: $fontsize;
   font-style: $fontstyle;
 }
+.wp{
+    font-size: 10px;
+}
+.glow{
+    @extend .wp;
+    font-weight: bolder;
+}
+.res{
+    @extend .wp;
+}

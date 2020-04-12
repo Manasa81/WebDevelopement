@@ -19,7 +19,7 @@
         font-style: italic;
         column-gap: 40px;
   }
-  details{
+  .details{
       font-size: x-large;
   }
   h5{
@@ -31,13 +31,13 @@
     font-style: italic;
   }
   .res{
-    font-size: 30px;
+    font-size: larger;
     font-style: italic;
   }
   .glow {
-    font-size: larger;
     color: black;
     text-align: center;
+    font-weight: bold;
     -webkit-animation: glow 1s ease-in-out infinite alternate;
     -moz-animation: glow 1s ease-in-out infinite alternate;
     animation: glow 1s ease-in-out infinite alternate;
