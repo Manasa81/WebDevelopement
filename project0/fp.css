@@ -1,0 +1,35 @@
+.header {
+    padding: 1px;
+    text-align: right;
+    background: lightslategrey;
+    color: white;
+    font-size: larger;
+    border-radius: 20px;
+  }
+  p.cb{
+      text-align: left;
+      font-size: xx-large;
+      font-style: italic;
+      font-weight: bolder;
+  }
+  
+  table,th,tr{
+        border: 2px solid green;
+        font-size: xx-large;
+        font-style: italic;
+        column-gap: 40px;
+  }
+  details{
+      font-size: xx-large;
+  }
+  h5{
+    font-size: xx-large;
+  }
+  .wp{
+    font-size: 30px;
+    font-style: italic;
+  }
+  .res{
+    font-size: 30px;
+    font-style: italic;
+  }

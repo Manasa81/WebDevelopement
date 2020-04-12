@@ -1,0 +1,26 @@
+body{
+  background-color: lightcyan;
+}
+.header {
+  padding: 5px;
+  text-align: center;
+  background: #c72c81;
+  color: white;
+  font-size: 20px;
+  border-radius: 20px;
+}
+details{
+  font-size: larger;
+  padding: 5px;
+  text-align: center;
+  background:lightseagreen;
+  color: white;
+  font-size: 20px;
+  border-radius: 20px;
+  cursor: -webkit-grab; cursor: grab;
+}
+#hp{
+  text-align: center;
+  font-size: medium;
+  font-style: italic;
+}
