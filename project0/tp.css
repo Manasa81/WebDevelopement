@@ -1,5 +1,5 @@
 body{
-  background-color: linen;
+  /* background-color: white; */
   /* background-image: url("Backgroundimg.jpeg");
   background-repeat: no-repeat;
   background-size: cover; */
@@ -18,8 +18,7 @@ details{
   font-family: Georgia, 'Times New Roman', Times, serif;
   padding: 5px;
   text-align: center;
-  background:lightseagreen;
-  color: white;
+  background:lightslategray;
   font-size: 20px;
   border-radius: 20px;
   cursor: -webkit-grab; cursor: grab;
