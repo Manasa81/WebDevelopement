@@ -1,11 +1,14 @@
 import os
 
-from flask import Flask, session,request,render_template,flash,logging
+from flask import Flask, session
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+from flask.templating import render_template
+from flask import request
 
 app = Flask(__name__)
+os.environ['DATABASE_URL'] =  'postgres://yezocqidotvbaj:63d37cde50bccb34c9b546fdb6d18342f78d71b9847a986fd3ba065b5e8ad59c@ec2-18-235-20-228.compute-1.amazonaws.com:5432/d2kgfpergha2b4'
 
 # Check for environment variable
 if not os.getenv("DATABASE_URL"):
@@ -21,31 +24,14 @@ engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
 
-@app.route("/register.html", methods=["GET", "POST"])
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+@app.route("/register" , methods=["GET","post"])
 def register():
-    msg=None
-    if request.method == "POST":
-        name = request.form['name']
-        mail = request.form['mail']
-        passw = request.form['passw']
-        gender = request.form.get('gender')
-
-        # print(passw)
-        # register = user(username = uname, email = mail, password = passw)
-        # return redirect(url_for("login"),mail)
-        if(len(passw)<8):
-            app.logger.info('%s password is less than 8 chars',name)
-            msg="The length of password should be greater than 8"
-            return render_template("register.html",name=msg)
-        elif(not name.isalpha()):
-            app.logger.info('the name has numbers in it')
-            msg = "The name has numbers in it!!"
-            return render_template("register.html",name=msg)
-        else:
-            app.logger.info('%s logged in successfully',name)
-            app.logger.info(mail)
-            app.logger.info(gender)
-            msg = name+"account created successfully"
-            return render_template("register.html",name=msg)
-
-    return render_template("register.html")
+    if request.method == "GET":
+        return "PLEASE SUBMIT THE FORM"
+    else:
+        name = request.form.get("name")
+        return render_template("register.html", name=name)
