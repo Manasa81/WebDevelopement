@@ -41,3 +41,9 @@ def login():
         return "Please enter credentials in home page"
     else:
         return render_template("login.html")
+@app.route("/login/thanks" ,methods=["GET","POST"])
+def thanks():
+    if request.method == "GET":
+        return "Please enter credentials in home page"
+    else:
+        return render_template("thanks.html")
