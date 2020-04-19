@@ -35,10 +35,9 @@ def register():
     else:
         name = request.form.get("name")
         return render_template("register.html", name=name)
-# @app.route("/login",methods=["GET","POST"])
-# def login():
-#     if request.method == "GET":
-#         return "Please enter credentials in home page"
-#     else:
-#         name=request.form.get("name")
-#         return render_template("login.html",name=name)
+@app.route("/login",methods=["GET","POST"])
+def login():
+    if request.method == "GET":
+        return "Please enter credentials in home page"
+    else:
+        return render_template("login.html")

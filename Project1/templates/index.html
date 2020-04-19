@@ -45,6 +45,7 @@
         padding: 16px 20px;
         margin: 8px 0;
         border: none;
+        font-size: larger;
         cursor: pointer;
         width: 100%;
         opacity: 0.9;
@@ -54,9 +55,6 @@
 </head>
 <body>
     <h1>Registration Form</h1>
-
-
-
     <div class="container" >
         <div class="row" style="margin-top: 40px">
             <div class="col-sm-6">
@@ -81,6 +79,16 @@
         </div>
     </div>
     <br>
+    <div class="container">
+        <div class="row" style="margin-top: 40px">
+            <div class="col-sm-6">
+            <form action="{{url_for('login')}}" method="POST">
+            <h3>Already have an account.Please login</h3>
+            <button type="submit" class="registerbtn">Login</button>
+        </form>
+    </div>
+</div>
+    </div>
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
