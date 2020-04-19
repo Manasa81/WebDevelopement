@@ -40,24 +40,20 @@
         color: black;
     }
     .registerbtn {
-        font-size: larger;
-        font-weight: bolder;
-        opacity: 10;
+        background-color: #4CAF50;
+        color: white;
+        padding: 16px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
         }
     
 </style>
 </head>
 <body>
     <h1>Registration Form</h1>
-    {% if "account created successfully" in name %}
-        <div class="success">{{name}}</div>
-    {% endif %}
-    {% if name=="The length of password should be greater than 8" %}
-        <div class="error">{{name}}</div>
-    {% endif %}
-    {% if name=="The name has numbers in it!!" %}
-    <div class="error">{{name}}</div>
-    {% endif %}
 
 
 
