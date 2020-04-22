@@ -52,6 +52,13 @@
                       <label for="email">Password : </label>
                       <input type="password" required name="passw" class="form-control" id="passw">
                     </div>
+                    {% if message == "invalid credentails" %}
+                        <h4 style="color:red" >Invalid credentails</h4>
+                    {% endif %}
+                    {% if message == "invalid pass" %}
+                        <h4 style="color:red" >Wrong Password.Try Again</h4>
+                    {% endif %}
+
                      <br>
 
                      <button type="submit" class="registerbtn">Login</button>

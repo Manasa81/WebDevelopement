@@ -50,6 +50,9 @@
         width: 100%;
         opacity: 0.9;
         }
+    .error{
+        font-size: x-large;
+    }
     
 </style>
 </head>
@@ -69,11 +72,18 @@
                     </div>
                     <div class="form-group">
                       <label for="email">Password : </label>
-                      <input type="password" required name="passw" class="form-control" id="passw">
+                      <input type="password" required name="passw" class="form-control" id="passw" minlength="6">
                     </div>
-                     <br>
+                    {% if name == "Already registered" %}
+                        <h4 style="color:red" >{{name}}</h4>
+                    {% endif %}
+                    {% if status == "success" %}
+                        <h4 style="color:green" >Hello, {{ name }} you have successfully registered.Please login</h4>
+                    {% endif %}
+                    <br>
 
                      <button type="submit" class="registerbtn">Register</button>
+            
                 </form>
             </div>
         </div>
@@ -83,7 +93,7 @@
         <div class="row" style="margin-top: 40px">
             <div class="col-sm-6">
             <form action="{{url_for('login')}}" method="POST">
-            <h3>Already have an account.Please login</h3>
+            <h3>Already have an account?Please login</h3>
             <button type="submit" class="registerbtn">Login</button>
         </form>
     </div>
