@@ -107,10 +107,11 @@ def reviewAPI():
         return jsonify({"error" : "Not a json request"}), 400
     data = request.get_json()
     # data=request.get_json()
-    print(data,'ggg')
+    
     isbn=data.get("isbn")
+    print(isbn,'ggg')
     email=data.get("email")
-    book = Books.query.get(isbn)
+    book = Books.query.get('isbn')
     rev=db.query(Reviews).all()
     reviewlist=[]
     for i in rev:
@@ -120,6 +121,7 @@ def reviewAPI():
             l['name']=name
             l['review']=(i.review)
             l['rating']=i.rating
+            print(l)
             reviewlist.append(l)
     print(reviewlist)
     for i in rev:
@@ -168,9 +170,10 @@ def searchAPI() :
         return jsonify({"error" : "Server Error"}), 500
 @app.route("/api/thanks", methods=["POST"])
 def thanks():
+    print('t')
     data = request.get_json()
-    book = Books.query.get(isbn)
     isbn=data.get('isbn')
+    book = Books.query.get('isbn')
     email=data.get('email')
     review=data.get("review")
     rating=data.get("rating")
@@ -178,6 +181,7 @@ def thanks():
     r=Reviews(email=email, book_isbn=isbn, review=review, rating=rating)
     db.add(r)
     db.commit()
+    print('c')
     return render_template("book_details.html",msg="reviewed",review=review,book=book,rating=rating)
 
 
