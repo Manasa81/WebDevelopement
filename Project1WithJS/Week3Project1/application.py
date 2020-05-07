@@ -166,6 +166,22 @@ def searchAPI() :
             return jsonify({"error" : "no results found"}), 404
     except Exception as e:
         return jsonify({"error" : "Server Error"}), 500
+@app.route("/api/thanks", methods=["POST"])
+def thanks():
+    data = request.get_json()
+    book = Books.query.get(isbn)
+    isbn=data.get('isbn')
+    email=data.get('email')
+    review=data.get("review")
+    rating=data.get("rating")
+    print(rating)
+    r=Reviews(email=email, book_isbn=isbn, review=review, rating=rating)
+    db.add(r)
+    db.commit()
+    return render_template("book_details.html",msg="reviewed",review=review,book=book,rating=rating)
+
+
+
 
 # @app.route("/login/books/<isbn>", methods=["GET","POST"])
 # def book_detail(isbn):

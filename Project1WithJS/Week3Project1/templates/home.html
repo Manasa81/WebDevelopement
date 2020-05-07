@@ -16,7 +16,7 @@
     html,
     body {
         margin: 0;
-        background-color: #ffd8d8;
+        background-color:white;
         text-align: center;
         height: 100%;
         min-height: 100%;
@@ -235,7 +235,18 @@
         font-size: xx-large;
         float: right;
         text-align: left;
-    }
+    }.r{
+            font-size: x-large;
+            font-style: italic;            
+            margin-left: 58%;
+        }        
+
+        h2{
+            text-align: center;
+            font-weight: bolder;
+            font-style: italic;
+        }
+       
 </style>
 
 <body>
@@ -269,10 +280,6 @@
         <h2>“A Book is Dream you have in your hand - Noil Gaiman”</h2>
     </div>
 
-    <h1 class="main">
-        Book Details</h1>
-    <p class="info">you already reviewed this book</p>
-    <h2>you can see other user reviews and ratings here</h2>
        <div id="review">
 
        </div>
@@ -298,7 +305,7 @@
                         <p><b>Author: ${book.author}</b></p>
                         <p><b>Year of Publication: ${book.year}</b></p>
                          <p><b>Year of Publication: ${book}</b></p>
-                        <button id="review" type="submit" style="width: 250px; margin: 0 auto; color: red; background: pink; font-family: italic; font-size : 20px;" name="${book.isbn}" author="${book.author}" year="${book.year}" title="${book.title}" onclick="review()">View Book Details</button>
+                        <button id="review" type="submit" style="width: 250px; margin: 0 auto; color: red; background: pink; font-family: italic; font-size : 20px;" name="${book.isbn}" author="${book.author.toString()}" year="${book.year.toString()}" title="${book.title.toString()}" onclick="review()">View Book Details</button>
                         `;
                         document.querySelector('#content').innerHTML += i
                     });
@@ -311,22 +318,49 @@
 
         function review(){
             b=document.querySelector('#review').name;
-            y=document.querySelector('#review').year;
-            a=document.querySelector('#review').author;
-            t=document.querySelector('#review').title;
+            y=document.querySelector('#review').year
+            a=document.querySelector('#review').author
+            t=document.querySelector('#review').title
             const request = new XMLHttpRequest();
             request.open("POST" , "/api/review")
             const data = JSON.stringify({"isbn" : b.toString(), "email" : email});
             document.querySelector('#content').innerHTML =""
-            document.querySelector("#review").innerHTML = ""
+            document.querySelector("#review").innerHTML = `<h2>you can see other user reviews and ratings here</h2>
+            <p class="info"> You have choosen a book called <strong>${t}</strong> which was written by <strong>${a}</strong> in the year <strong>${y}</strong></p>
+
+            <div>
+
+            <div class="stars">
+                <p class='r'><label for="rating">Please <strong>Rate</strong> here : </label>
+                    <br>
+                <form action="">
+                  <input class="star star-5" id="star-5" type="radio" name="star" value="5"/>
+                  <label class="star star-5" for="star-5"></label>
+                  <input class="star star-4" id="star-4" type="radio" name="star" value="4"/>
+                  <label class="star star-4" for="star-4"></label>
+                  <input class="star star-3" id="star-3" type="radio" name="star" value="3"/>
+                  <label class="star star-3" for="star-3"></label>
+                  <input class="star star-2" id="star-2" type="radio" name="star" value="2"/>
+                  <label class="star star-2" for="star-2"></label>
+                  <input class="star star-1" id="star-1" type="radio" name="star" value="1"/>
+                  <label class="star star-1" for="star-1"></label>
+                </form>
+              </div></p>
+
+
+              Please <strong>review</strong> here : 
+                <input type="text" name="comment" class="form-control" id="comment" placeholder="Review here.." style="width: 200px;height: 30px style="color: black;font-size:larger;;">
+                <button type="submit" class="btn" onclick="thanks()">SUBMIT</button></p>
+            </div>
+            </form>`
             request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
             request.onload = () => {
                 console.log(request)
                 const response = JSON.parse(request.responseText);
                 if (request.status === 200) {
                     response.reviewlist.forEach(rev => {
-                        console.log(rev)
                         let i=
+
                          `<p>${rev.name}:${rev.rating},${rev.review}</p>`
                          document.querySelector('#review').innerHTML +=i
                         
@@ -336,6 +370,21 @@
             }
         request.send(data);
         return false
+        }
+
+        function thanks(){
+            b=document.querySelector('#review').name;
+            var value = document.querySelector('#comment').value;
+            var ele = document.getElementsByName('star');
+            var rating = ""
+            for(i = 0; i < ele.length; i++) {
+                if(ele[i].checked){rating=ele[i].value;}
+            }
+            const request = new XMLHttpRequest();
+            request.open("POST" , "/api/thanks")
+            var jsonData = JSON.stringify({"isbn":b.toString(),"review" : value,"rating" : rating , "email":email})
+            request.send(jsonData);
+            return false;
         }
     </script>
 
