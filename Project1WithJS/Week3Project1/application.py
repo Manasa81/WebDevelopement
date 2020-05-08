@@ -90,16 +90,6 @@ def index():
         return render_template('Register.html')
     return render_template("home.html",email=session.get("email"))
 
-# @app.route("/login/books",methods = ["GET","POST"])
-# def books():
-#     if request.method == "GET":
-#         return render_template("login.html")
-#     else:
-#         tag = request.form.get("name")
-#         search = "%{}%".format(tag)
-#         books = Books.query.filter(or_(Books.isbn.ilike(search), Books.title.ilike(search), Books.author.ilike(search), Books.year.like(search)))
-#         return render_template("login.html",msg=books,status="searched",tag=tag)
-
 @app.route("/api/review",methods=["POST"])
 def reviewAPI():
     print('inside review')
@@ -129,9 +119,10 @@ def reviewAPI():
             review=i.review
             rating=i.rating
             print("here")
-            return jsonify({"reviewlist" : reviewlist}), 200
+
+            return jsonify({"reviewlist" : reviewlist},{"status":"already reviewd"}),200
     print('after')
-    return jsonify({"reviewlist" : reviewlist}), 200
+    return jsonify({"reviewlist" : reviewlist},{"status":"yet to be"}), 200
         
 
 @app.route("/api/search", methods=["POST"])
@@ -172,6 +163,7 @@ def searchAPI() :
 def thanks():
     print('t')
     data = request.get_json()
+    print(data)
     isbn=data.get('isbn')
     book = Books.query.get('isbn')
     email=data.get('email')
@@ -182,8 +174,7 @@ def thanks():
     db.add(r)
     db.commit()
     print('c')
-    return render_template("book_details.html",msg="reviewed",review=review,book=book,rating=rating)
-
+    return jsonify({"status" : "success"}), 200
 
 
 

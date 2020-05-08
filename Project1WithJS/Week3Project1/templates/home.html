@@ -291,7 +291,8 @@
                         <p><b>Title: ${book.title}</b></p>
                         <p><b>Author: ${book.author}</b></p>
                         <p><b>Year of Publication: ${book.year}</b></p>
-                         <p><b>isbn: ${book.isbn}</b></p>
+                        <p><b>isbn: ${book.isbn}</b>
+                         </p>
                         <button id="review" type="submit" style="width: 250px; margin: 0 auto; color: red; background: pink; font-family: italic; font-size : 20px;" onclick="review(${book.isbn})">View Book Details</button>
                         `;
                         document.querySelector('#content').innerHTML += i
@@ -303,46 +304,65 @@
             return false;
         }
 
-        function review(b){
-            console.log(b)
+        function review(b1){
+            var b="";
+            b=""+b1;
+            var isbn="";
+            console.log(b,b.length)
+            if (b.length <10){
+                let i= 10-b.length;
+                console.log(i,typeof(i))
+                while(i>0){
+                    isbn+="0"+b;
+                    i--;
+                }
+            }else{
+                isbn=""+b;
+            }
             const request = new XMLHttpRequest();
             request.open("POST" , "/api/review")
-            const data = JSON.stringify({"isbn" : ''+b, "email" : email});
+            const data = JSON.stringify({"isbn" : ''+isbn, "email" : email});
             console.log(data)
             document.querySelector('#content').innerHTML =""
-            document.querySelector("#review").innerHTML = `<h2>you can see other user reviews and ratings here</h2>
-            <p>${b.toString()}</p>
-            <div>
-
-            <div class="stars">
-                <p class='r'><label for="rating">Please <strong>Rate</strong> here : </label>
-                    <br>
-                <form action="">
-                  <input class="star star-5" id="star-5" type="radio" name="star" value="5"/>
-                  <label class="star star-5" for="star-5"></label>
-                  <input class="star star-4" id="star-4" type="radio" name="star" value="4"/>
-                  <label class="star star-4" for="star-4"></label>
-                  <input class="star star-3" id="star-3" type="radio" name="star" value="3"/>
-                  <label class="star star-3" for="star-3"></label>
-                  <input class="star star-2" id="star-2" type="radio" name="star" value="2"/>
-                  <label class="star star-2" for="star-2"></label>
-                  <input class="star star-1" id="star-1" type="radio" name="star" value="1"/>
-                  <label class="star star-1" for="star-1"></label>
-                </form>
-              </div></p>
-
-
-              <p class='info'><label for="review">Please <strong>review</strong> here : </label>
-                <input type="text" name="comment" class="form-control" id="comment" placeholder="Review here.." style="width: 200px;height: 30px style="color: black;font-size:larger;;">
-                <button type="submit" class="btn" onclick="thanks(${b})">SUBMIT</button></p>
-            </div>
-            </form>`
+            
             request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
             request.onload = () => {
-                console.log(request)
                 const response = JSON.parse(request.responseText);
                 if (request.status === 200) {
-                    response.reviewlist.forEach(rev => {
+                    if (response[1].status==="already reviewd"){
+                        document.querySelector("#review").innerHTML= `<h1>you already reviewed this book.</h1>`
+                    }else{
+                        document.querySelector("#review").innerHTML = `
+           
+                        <div>
+
+                        <div class="stars">
+                            <p class='r'><label for="rating">Please <strong>Rate</strong> here : </label>
+                                <br>
+                            <form action="">
+                            <input class="star star-5" id="star-5" type="radio" name="star" value="5"/>
+                            <label class="star star-5" for="star-5"></label>
+                            <input class="star star-4" id="star-4" type="radio" name="star" value="4"/>
+                            <label class="star star-4" for="star-4"></label>
+                            <input class="star star-3" id="star-3" type="radio" name="star" value="3"/>
+                            <label class="star star-3" for="star-3"></label>
+                            <input class="star star-2" id="star-2" type="radio" name="star" value="2"/>
+                            <label class="star star-2" for="star-2"></label>
+                            <input class="star star-1" id="star-1" type="radio" name="star" value="1"/>
+                            <label class="star star-1" for="star-1"></label>
+                            </form>
+                        </div></p>
+
+
+                        <p class='info'><label for="review">Please <strong>review</strong> here : </label>
+                            <input type="text" name="comment" class="form-control" id="comment" placeholder="Review here.." style="width: 200px;height: 30px style="color: black;font-size:larger;;">
+                            <button type="submit" class="btn" onclick="thanks(${isbn})">SUBMIT</button></p>
+                        </div>
+                        </form>`
+                    }
+
+                    document.querySelector("#review").innerHTML+=`<h2>you can see other user reviews and ratings here</h2>`
+                    response[0].reviewlist.forEach(rev => {
                         let i=
 
                          `<p>${rev.name}:${rev.rating},${rev.review}</p>`
@@ -351,14 +371,26 @@
                     }
                     )
         }
-            }
+        }
         request.send(data);
         return false
         }
 
-        function thanks(b){
-            // b=document.querySelector('#comment').isbn;
-            // console.log(b.toString())
+        function thanks(b1){
+            var b="";
+            b=""+b1;
+            var isbn="";
+            console.log(b,b.length)
+            if (b.length <10){
+                let i= 10-b.length;
+                console.log(i,typeof(i))
+                while(i>0){
+                    isbn+="0"+b;
+                    i--;
+                }
+            }else{
+                isbn=""+b;
+            }
             var value = document.querySelector('#comment').value;
             var ele = document.getElementsByName('star');
             var rating = ""
@@ -367,8 +399,20 @@
             }
             const request = new XMLHttpRequest();
             request.open("POST" , "/api/thanks")
-            var jsonData = JSON.stringify({"isbn":b.toString(),"review" : value,"rating" : rating , "email":email})
+            request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+            document.querySelector('#review').innerHTML = ""
+            request.onload = () => {
+                const response = JSON.parse(request.responseText);
+                if (request.status === 200) {
+                    let i =`
+                    <h2>thanks for review</h2>`
+                    document.querySelector('#review').innerHTML +=i
+
+        }
+        }
+            var jsonData = JSON.stringify({"isbn":isbn.toString(),"review" : value,"rating" : rating , "email":email})
             request.send(jsonData);
+            console.log(jsonData)
             return false;
         }
     </script>
