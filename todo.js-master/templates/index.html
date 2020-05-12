@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<head>
+    <title>TODO App</title>
+</head>
+<body>
+    <ol>
+        <div id="todolist"></div>
+    </ol>
+    <input type="text" name="taskName" id="taskName" >
+    <input type="date" name="dd" id="dueDate">
+    <button onclick="createTask()">Add Details</button>
+    <script>
+        let taskList = []
+        let completed = {}
+        class Task {
+            constructor(name, dueDate, isDone) {
+                this.taskId = Date.now();
+                this.name = name;
+                this.dueDate = dueDate;
+                this.isDone = isDone;
+            }
+
+        
+        }
+        function Stringform(task) {
+            let htmlText = '<li class="task" ><div>'
+            htmlText += task.name
+            htmlText += ", " + task.dueDate;
+            if (completed[task.taskId]){
+                htmlText += ', completed  '
+            }else{
+                if (deadLine(task.dueDate)){
+                    htmlText += ","+'<input type="checkbox" name="isDone" id="'+task.taskId+'">'
+                    htmlText += '<button onclick="checkStatus('+task.taskId+')">Submit your status</button>'+"    "
+                }else{
+                    htmlText += ',   due time is completed   '
+                }
+        }
+            htmlText += '<button onclick="deleteTask(';
+            htmlText += task.taskId;
+            htmlText += ')">Delete</button>';
+            
+            htmlText += '</div></li>';
+            return htmlText;
+        }
+        function deadLine(b){
+            var today = new Date();
+            var due=new Date(b)
+            // console.log(due.getFullYear())
+            return today.getTime() < due.getTime()
+
+        }
+        function checkStatus(id){
+            console.log(id)
+            var x=document.getElementById(id).checked;
+            console.log
+            if (x === true){
+                completed[id]=true;
+                reload()
+            }
+            return x
+        }
+        function render() {
+            readStorage()
+            const listUI = document.getElementById("todolist")
+            listUI.innerHTML = "";
+            if (taskList.length === 0) listUI.innerHTML = "No tasks todo :-)"
+            taskList.forEach((task) => {
+                listUI.innerHTML += Stringform(task)
+            })
+        }
+
+        function deleteTask(taskId) {
+            taskList = taskList.filter(
+                (t) => {
+                    if(t.taskId != taskId) 
+                    return t;
+                }
+            );
+            // call a web api to update the database on the server
+            
+            this.persistData();
+            render()
+        }
+
+        function createTask() {
+            const taskName = document.getElementById("taskName").value;
+            const dueDate=document.getElementById("dueDate").value;
+            // console.log(deadLine(dueDate));
+            addTask(new Task(taskName, dueDate, false));
+        }
+
+        function addTask(t) {
+            taskList.push(t)
+            this.persistData();
+            render();
+            document.querySelector('#taskName').value=" ";
+        }
+        function reload(){
+            persistData()
+            readStorage()
+            render()
+        }
+
+        window.addEventListener('load', ()  => {
+            readStorage()
+            render()
+
+        } )
+
+        function persistData(){
+            localStorage.setItem('Task',JSON.stringify(taskList));
+            localStorage.setItem('isDone',JSON.stringify(completed))
+        }
+        function readStorage(){
+            const localData=JSON.parse(localStorage.getItem('Task'));
+            const status=JSON.parse(localStorage.getItem('isDone'));
+            if (localData){
+                taskList=localData;
+            }
+            if (status){
+                completed=status;
+            }
+        }
+                
+    </script>
+</body>
+</html>
