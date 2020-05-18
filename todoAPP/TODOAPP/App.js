@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { ImageBackground, StyleSheet, Text, View, Button, TextInput, FlatList, ScrollView } from 'react-native';
 
-
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
