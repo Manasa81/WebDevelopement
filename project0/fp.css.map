@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAGA,uBAAuB;AACvB,AAAA,IAAI,CAAC;EACH,gBAAgB,EALR,KAAK;EAMb,KAAK,EALK,KAAK;EAMf,UAAU,EALD,MAAM;CAMhB;;AAID,AAHA,GAGG,EAGH,KAAK,EAIL,IAAI,CAVC;EACD,SAAS,EAAE,MAAM;CACpB;;AAID,AAAA,KAAK,CAAA;EAED,WAAW,EAAE,IAAI;CACpB",
-    "sources": [
-        "fp.scss"
-    ],
-    "names": [],
-    "file": "fp.css"
-}
