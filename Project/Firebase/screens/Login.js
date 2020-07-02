@@ -5,35 +5,39 @@ import {
   FlatList,
   StyleSheet,
   Text,
+  View,
 } from "react-native";
 import Constants from "expo-constants";
 
 const DATA = [
   {
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "First Item",
+    title: "Income tax",
   },
   {
     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "Second Item",
+    title: "GST",
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Third Item",
+    title: "others",
   },
 ];
 
 function Item({ id, title, selected, onSelect }) {
   return (
-    <TouchableOpacity
-      onPress={() => onSelect(id)}
-      style={[
-        styles.item,
-        { backgroundColor: selected ? "#6e3b6e" : "#f9c2ff" },
-      ]}
-    >
-      <Text style={styles.title}>{title}</Text>
-    </TouchableOpacity>
+    <View>
+      <Text>Select a category to upload documents</Text>
+      <TouchableOpacity
+        onPress={() => onSelect(id)}
+        style={[
+          styles.item,
+          { backgroundColor: selected ? "#6e3b6e" : "#f9c2ff" },
+        ]}
+      >
+        <Text style={styles.title}>{title}</Text>
+      </TouchableOpacity>
+    </View>
   );
 }
 
